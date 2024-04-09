@@ -1,0 +1,48 @@
+{% extends 'website/base.html' %}
+{% load static %}              
+{% block title %}HomePage{% endblock %}                                                                                                                           
+{% block content %}
+<link rel="stylesheet" href="{% static 'website/index.css' %}">  
+<div class="search-container">
+      <input type="text" id="fname" name="fname" placeholder="Ingresa el nombre de un libro">
+</div>
+
+<div class="book-main-container">
+    {% for book in books %}    
+    <div class="book-container">
+        <div class="image-container"><img src="{{book.Picture}}" alt ="imagen de {{book.Author}}"></div>
+        <div class="text-container">
+            <h1>{{book.BookName}}</h1>
+            <p>Edición en español | de {{book.Author}} | {{book.Date}}</p>
+            <p>{{book.Context}}</p>
+
+        </div>
+    
+    </div>
+    {% endfor %}
+        <img style="display:none;height: 28vw;"id="noResultsImage" src="https://www.geo-grupa.hr/build/images/background/no-results-bg.2d2c6ee3.png" alt="No se encontraron resultados">   
+</div>
+    <script>
+        document.getElementById('fname').addEventListener('input', function() {
+            var searchTerm = this.value.trim().toLowerCase();
+            var books = document.querySelectorAll('.book-container');
+            var found = false;
+            books.forEach(function(book) {
+                var title = book.querySelector('h1').textContent.trim().toLowerCase();
+                if (title.includes(searchTerm)) {
+                    book.style.display = 'flex';
+                    found = true;
+                } else {
+                    book.style.display = 'none';
+                }
+            });
+            if (!found) {
+                document.getElementById('noResultsImage').style.display = 'block';
+            } else {
+                document.getElementById('noResultsImage').style.display = 'none';
+            }
+        });
+    </script>
+
+{% endblock %}
+

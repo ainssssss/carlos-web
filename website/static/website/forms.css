@@ -1,0 +1,33 @@
+form {
+  width: 30%;
+  border: 3px dotted black;
+  padding: 1vw;
+  margin-top: 10vh;
+  position: relative;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+form input {
+  height: 3vh;
+}
+
+form button{
+    padding: 8px 24px;
+  background: #d7d7d7;
+  border: none;
+  border-radius: 6px;
+}
+
+form button:hover{
+    background: #16d3ff;
+}
+
+section div{
+    display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}

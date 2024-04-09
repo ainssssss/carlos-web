@@ -1,0 +1,25 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}                                                                                                                       
+{% block content %}
+        <link rel="stylesheet" href="{% static 'website/forms.css' %}">
+        <div>
+        <form id="form-login" method="post" target="_self">
+            {% csrf_token %}
+            <h1>Login in</h1>
+            <p>In order to access all features</p>
+            
+            <h1>Username</h1>
+            {{form.username}}
+            <h1>Password</h1>
+            {{form.password}}
+            <p style="color:red;font-size: clamp(1rem, 1vw, 4rem);padding-top: 1vw;">{{error}}</p>
+        <button type="submit">Login</button>
+        <a href="/register">create account</a>
+        </form>
+        </div>
+{% endblock %}
+
+{% block footer-content %}
+    <h1>Copyright © longomatch 2024</h1>
+{% endblock %}

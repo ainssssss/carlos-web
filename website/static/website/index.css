@@ -1,0 +1,55 @@
+.book-main-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.book-container{
+  display: flex;
+  width: 60%;
+  padding: 1vw;
+  border: 2px dashed black;
+  margin-top: 2vh;
+  border-radius: 25px;
+}
+
+.image-container img{
+    height: 30vw;
+  width: 23vw;
+  aspect-ratio: 16/9;
+}
+
+.text-container{
+    margin-left: 2vw;
+  width: 60%;
+}
+
+.text-container h1{
+    font-size: 3em;
+}
+
+.text-container > p:nth-child(2){
+    color: #EE4865;
+  font-size: 1.8em;
+}
+
+.text-container > p:nth-child(3){
+    font-size: 1.5em;
+  word-wrap: break-word;
+}
+
+.search-container{
+    display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 4vh;
+}
+
+#fname{
+    width: 25%;
+  padding: 0.8vw 1vw;
+}
