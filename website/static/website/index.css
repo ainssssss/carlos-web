@@ -53,3 +53,7 @@
     width: 25%;
   padding: 0.8vw 1vw;
 }
+
+html body section div.book-main-container div.book-container div.text-container h1 a img{
+    height: 4vh;
+}

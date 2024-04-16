@@ -20,6 +20,61 @@ def index_view(request):
     }
     return render(request,'website/index.html',context=context)
 
+def book_id_view(request,book_id):
+    if request.method == 'POST':        
+        if not request.user.is_authenticated:
+            context = {
+                  'form' : LoginForm(),
+                  'error' : "You have to login for use this funcion"
+            }
+            return render(request,'website/login.html',context)
+        form = BooksForm(request.POST)
+        if form.is_valid():    
+            Bookname_POST_VALUE = form.cleaned_data["bookname"]
+            Context_POST_VALUE  = form.cleaned_data["context"] 
+            Editorial_POST_VALUE = form.cleaned_data["editorial"]
+            Paginas_POST_VALUE  = form.cleaned_data["paginas"]
+            Picture_POST_VALUE = form.cleaned_data["picture"]  
+            Active_Book = Book.objects.get(id=book_id)
+
+            Active_Book.BookName = Bookname_POST_VALUE
+            Active_Book.Context = Context_POST_VALUE
+            Active_Book.Editorial = Editorial_POST_VALUE
+            Active_Book.Paginas = Paginas_POST_VALUE
+            Active_Book.Picture = Picture_POST_VALUE
+            Active_Book.save()
+
+            return redirect('website:login')
+  
+        else:
+            context = { 
+                "form" : BooksForm(),
+                "error" : "Algo ha fallado al enviar el formulario"
+                         }   
+            return render(request,'website/changebook.html',context=context)
+    else:
+        if request.user.is_authenticated:
+            book = Book.objects.get(id=book_id) 
+            
+            initial_values = {
+            'bookname': book.BookName,
+            'context': book.Context,
+            'editorial': book.Editorial,
+            'paginas': book.Paginas,
+            'picture': book.Picture,
+            }
+            BookFormWithValues = BooksForm(instance=book, initial=initial_values)
+
+            context = {
+                  "form" : BookFormWithValues,
+            }
+            return render(request,'website/changebook.html',context=context)
+        else:
+            context = {
+                    'form' : LoginForm(),
+                    'error' : "You have to login for use this funcion"
+            }
+            return render(request,'website/login.html',context)
 
 def addbook_view(request):
     if request.method == 'POST':        

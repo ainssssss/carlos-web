@@ -1,0 +1,35 @@
+{% extends 'website/base.html' %}
+{% load static %}              
+{% block title %}Add Book{% endblock %}
+{% block content %}
+        <link rel="stylesheet" href="{% static 'website/forms.css' %}">
+        <div>
+        <form id="form-book" method="post" target="_self">
+            {% csrf_token %}   
+            <h1>Change a Bookname Content</h1>  
+            <p>Fill the form for change a book content</p>
+
+            <h1>Bookname</h1>  
+            {{form.bookname}}  
+            
+            <h1>Context</h1>  
+            {{form.context}}  
+            
+           <h1>Editorial</h1>  
+            {{form.editorial}} 
+
+            <h1>Paginas</h1>
+            {{form.paginas}}
+
+            <h1>Picture</h1>
+            {{form.picture}}
+           
+            <p style="color:red;font-size: clamp(1rem, 1vw, 4rem);padding-top: 1vw;">{{error}}</p>
+        <button type="submit">Change book</button>
+        </form>
+        </div>
+{% endblock %}
+        
+{% block footer-content %}     
+    <h1>Copyright © longomatch 2024</h1>
+{% endblock %}    
